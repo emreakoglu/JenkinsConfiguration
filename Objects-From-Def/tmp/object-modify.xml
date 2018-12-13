@@ -1,0 +1,1 @@
+<changes><dcm:vector-insert-before xmlns:dcm="urn:datapower:configuration:manager" class="PolicyMaps"><PolicyMaps><Match class="Matching">JenkinsMatch_1</Match><Rule class="StylePolicyRule">JenkinsRule_1</Rule></PolicyMaps></dcm:vector-insert-before></changes>

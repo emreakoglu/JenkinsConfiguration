@@ -1,0 +1,1 @@
+<StylePolicyRule name="JenkinsRule_1"><mAdminState>enabled</mAdminState><Direction>request-rule</Direction><InputFormat>none</InputFormat><OutputFormat>none</OutputFormat><NonXMLProcessing>off</NonXMLProcessing><Unprocessed>off</Unprocessed></StylePolicyRule>
