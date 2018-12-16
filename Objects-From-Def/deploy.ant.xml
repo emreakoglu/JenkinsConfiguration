@@ -645,20 +645,24 @@
       Export an object from a domain on the device.
   -->
   <target name="export-object" depends="-init-dir, check-access">
+  
+	
 
     <fail message="The Ant property 'domain' is required but not defined.  This is the name of a domain on the DataPower device." unless="domain"/>
     <fail message="The Ant property 'object.class' is required but not defined.  This is the object's class." unless="object.class"/>
     <fail message="The Ant property 'object.name' is required but not defined.  This is the name of the target object on the DataPower device." unless="object.name"/>
-    <fail message="The Ant property 'export.file' is required but not defined.  This is the filename where the backup will be written." unless="export.file"/>
+    <fail message="The Ant property 'backup_folder' is required but not defined.  This is the filename where the backup will be written." unless="backup_folder"/>
 
     <property name="ref.objects" value="true"/> <!-- provide defaults if not specified by user -->
     <property name="ref.files" value="true"/>
     <property name="all.files" value="false"/>
     <property name="format" value="ZIP"/>
+	
+	<property name="exported_backup_file_name" value="${backup_folder}\${object.name}.${export.format.extension}"/>
 
     <sequential>
       <local name="dirname"/>
-      <dirname property="dirname" file="${export.file}"/>
+      <dirname property="dirname" file="${backup_folder}"/>
       <if>
         <not>
           <isfileselected file="${dirname}">
@@ -666,12 +670,15 @@
           </isfileselected>
         </not>
         <then>
-          <fail message="No permission to write ${export.file} into folder ${dirname}"/>
+          <fail message="No permission to write ${backup_folder} into folder ${dirname}"/>
         </then>
       </if>
     </sequential>
+	
+	<echo>DEPLOY-ANT</echo>
+	<echo>${host} ${port} ${uid} ${pwd} ${domain} ${exported_backup_file_name} ${format} ${dumpinput} ${dumpoutput} ${capturesoma} ${object.class} ${object.name} ${ref.objects} ${ref.files} ${all.files}</echo>
 
-    <exportObject host="${host}" port="${port}" uid="${uid}" pwd="${pwd}" domain="${domain}" local="${export.file}"
+    <exportObject host="${host}" port="${port}" uid="${uid}" pwd="${pwd}" domain="${domain}" local="${exported_backup_file_name}"
       format="${format}" dumpinput="${dumpinput}" dumpoutput="${dumpoutput}" capturesoma="${capturesoma}"
       objclass="${object.class}" objname="${object.name}" refobjs="${ref.objects}" reffiles="${ref.files}" allfiles="${all.files}" />
 

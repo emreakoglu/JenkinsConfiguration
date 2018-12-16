@@ -7,4 +7,48 @@
 	
 	<import file="deploy.ant.xml"/>
 	
+	<target name="export_with_Creation" depends="-init-dir, check-access">
+	
+		
+		<echo>object.name = ${object.name}</echo>
+		<echo>policy.name = ${policy.name}</echo>
+		<echo>isNewRuleImporting = ${isNewRuleImporting}</echo>
+		<echo>import.matching.name = ${import.matching.name}</echo>
+		<echo>import.rule.name = ${import.rule.name}</echo>
+		<echo>object.class = ${object.class}</echo>
+		
+		
+		
+		<if>
+			<and>
+				<equals arg1="${object.class}" arg2="WSGateway"/>
+				<equals arg1="${isNewRuleImporting}" arg2="true"/>
+			</and>
+			<then>
+				<property name="objects.file" value="objects_definition_file_wsp.xml"/>
+				<echo>objects.file = ${objects.file} WSP</echo>
+				<antcall target="objects-from-def">
+				</antcall>
+			</then>
+		</if>
+		
+		<if>
+			<and>
+				<equals arg1="${object.class}" arg2="MultiProtocolGateway"/>
+				<equals arg1="${isNewRuleImporting}" arg2="true"/>
+			</and>
+			<then>
+				<property name="objects.file" value="objects_definition_file_mpgw.xml"/>
+				<echo>objects.file = ${objects.file} MPGW</echo>
+				<antcall target="objects-from-def">
+				</antcall>
+			</then>
+		</if>
+		
+		<antcall target="export-object">
+		</antcall>
+		
+	</target>
+	
+	
 </project>
