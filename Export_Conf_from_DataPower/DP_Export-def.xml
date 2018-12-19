@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="DP_OBJECT_FROM_DEF" default="main" xmlns:props="antlib:ibm">
+	<description>Implements datapower object definition</description>
+	
+	<property file="build_object_from_def.properties"/>
+	
+	<import file="deploy.ant.xml"/>
+	
+	
+	
+</project>

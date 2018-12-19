@@ -7,17 +7,15 @@
 	
 	<import file="deploy.ant.xml"/>
 	
-	<target name="export_with_Creation" depends="-init-dir, check-access">
+	<target name="import_with_Creation" depends="-init-dir, check-access">
 	
-		
-		<echo>object.name = ${object.name}</echo>
-		<echo>policy.name = ${policy.name}</echo>
+	
+		<echo>Import edilecek dosya lokasyonu = ${import.file}</echo>
+		<echo>object Class = ${object.class}</echo>
 		<echo>isNewRuleImporting = ${isNewRuleImporting}</echo>
+		<echo>policy.name = ${policy.name}</echo>
 		<echo>import.matching.name = ${import.matching.name}</echo>
 		<echo>import.rule.name = ${import.rule.name}</echo>
-		<echo>object.class = ${object.class}</echo>
-		
-		
 		
 		<if>
 			<and>
@@ -45,7 +43,7 @@
 			</then>
 		</if>
 		
-		<antcall target="export-object">
+		<antcall target="import-dpo">
 		</antcall>
 		
 	</target>
